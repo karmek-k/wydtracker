@@ -10,7 +10,10 @@ export default function CurrentWeekScreen({
     <View style={styles.container}>
       <Text style={styles.title}>Twoje wydatki w tym tygodniu</Text>
       <Text style={styles.money}>1234,00 zł</Text>
-      <Button title="Dodaj nowy wydatek" onPress={() => {}} />
+      <Button
+        title="Dodaj nowy wydatek"
+        onPress={() => console.log('new expense')}
+      />
     </View>
   );
 }
