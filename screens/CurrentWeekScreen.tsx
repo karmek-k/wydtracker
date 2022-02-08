@@ -16,7 +16,7 @@ export default function CurrentWeekScreen({
       <Text style={styles.money}>{expenses.sum} zł</Text>
       <Button
         title="Dodaj nowy wydatek"
-        onPress={() => console.log('new expense')}
+        onPress={() => navigation.navigate('AddExpenseModal')}
       />
     </View>
   );
