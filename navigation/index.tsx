@@ -25,6 +25,7 @@ import {
   RootTabScreenProps
 } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import AddExpenseModal from '../screens/AddExpenseModal';
 
 export default function Navigation({
   colorScheme
@@ -59,6 +60,11 @@ function RootNavigator() {
         name="NotFound"
         component={NotFoundScreen}
         options={{ title: 'Oops!' }}
+      />
+      <Stack.Screen
+        name="AddExpenseModal"
+        component={AddExpenseModal}
+        options={{ title: 'Nowy wydatek' }}
       />
     </Stack.Navigator>
   );
