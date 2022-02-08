@@ -7,8 +7,14 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import { ExpenseContext, ExpenseProvider } from './services/expense';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/pl';
 
 SQLite.enablePromise(true);
+
+// dayjs().locale('pl');
+dayjs.extend(relativeTime);
 
 export default function App() {
   const isLoadingComplete = useCachedResources();

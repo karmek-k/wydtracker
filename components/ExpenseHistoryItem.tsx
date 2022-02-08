@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import dayjs from 'dayjs';
 import { Text, View } from '../components/Themed';
 import { Expense } from '../services/expense';
 
@@ -13,8 +14,8 @@ export default function ExpenseHistoryItem({ expense }: Props) {
         <Text style={styles.expenseSpent}>{expense.spent} zł</Text>
         <Text>{expense.name ?? 'Bez nazwy'}</Text>
       </View>
-      <View>
-        <Text style={styles.date}>{expense.date.toLocaleString()}</Text>
+      <View style={styles.dateView}>
+        <Text style={styles.date}>{dayjs().locale('pl').to(expense.date)}</Text>
       </View>
     </View>
   );
@@ -34,5 +35,8 @@ const styles = StyleSheet.create({
   },
   date: {
     fontStyle: 'italic'
+  },
+  dateView: {
+    justifyContent: 'center'
   }
 });
