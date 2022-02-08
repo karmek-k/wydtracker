@@ -1,33 +1,42 @@
-import { StyleSheet } from 'react-native';
+import { useContext } from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
 
 import { Text, View } from '../components/Themed';
+import { ExpenseContext } from '../services/expense';
 
-export default function TabTwoScreen() {
+export default function HistoryScreen() {
+  const expenses = useContext(ExpenseContext);
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-    </View>
+    <ScrollView>
+      {expenses.list().map((expense, i) => (
+        <View style={styles.expense} key={i}>
+          <View>
+            <Text style={styles.expenseSpent}>{expense.spent} zł</Text>
+            <Text>{expense.name ?? 'Bez nazwy'}</Text>
+          </View>
+          <View>
+            <Text style={styles.date}>{expense.date.toLocaleString()}</Text>
+          </View>
+        </View>
+      ))}
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+  expense: {
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
-  title: {
-    fontSize: 20,
+  expenseSpent: {
+    fontSize: 30,
     fontWeight: 'bold'
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%'
+  date: {
+    fontStyle: 'italic'
   }
 });
