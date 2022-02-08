@@ -4,7 +4,7 @@ import { SQLiteDatabase } from 'react-native-sqlite-storage';
 export interface Expense {
   name?: string;
   spent: number;
-  date: number;
+  date: Date;
 }
 
 export class ExpenseProvider {
@@ -15,7 +15,16 @@ export class ExpenseProvider {
       {
         name: 'Groceries',
         spent: 50,
-        date: Date.now()
+        date: new Date()
+      },
+      {
+        spent: 300,
+        date: new Date()
+      },
+      {
+        name: 'Gift',
+        spent: 150,
+        date: new Date()
       }
     ];
   }
