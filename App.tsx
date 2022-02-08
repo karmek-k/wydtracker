@@ -1,10 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
+import { useEffect, useState } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import SQLite, { SQLiteDatabase } from 'react-native-sqlite-storage';
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
-import { MoneyContext, MoneyProvider } from './services/money';
+import { ExpenseContext, ExpenseProvider } from './services/expense';
+
+SQLite.enablePromise(true);
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -15,10 +19,10 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <MoneyContext.Provider value={new MoneyProvider()}>
+        <ExpenseContext.Provider value={new ExpenseProvider(null)}>
           <Navigation colorScheme={colorScheme} />
           <StatusBar />
-        </MoneyContext.Provider>
+        </ExpenseContext.Provider>
       </SafeAreaProvider>
     );
   }
