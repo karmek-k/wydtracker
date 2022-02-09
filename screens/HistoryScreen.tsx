@@ -1,7 +1,6 @@
 import { useContext } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native';
 import ExpenseHistoryItem from '../components/ExpenseHistoryItem';
-
 import { ExpenseContext } from '../services/expense';
 
 export default function HistoryScreen() {

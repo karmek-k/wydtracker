@@ -1,22 +1,32 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Button, StyleSheet } from 'react-native';
 
 import { Text, View } from '../components/Themed';
 import { ExpenseContext } from '../services/expense';
 import { RootTabScreenProps } from '../types';
 
-export default function CurrentWeekScreen({
+export default function CurrentMonthScreen({
   navigation
-}: RootTabScreenProps<'CurrentWeek'>) {
+}: RootTabScreenProps<'CurrentMonth'>) {
   const expenses = useContext(ExpenseContext);
+  const [weekSum, setWeekSum] = useState<number>(0);
+
+  useEffect(() => {
+    setWeekSum(
+      expenses
+        .listThisMonth()
+        .map(e => e.spent)
+        .reduce((a, b) => a + b)
+    );
+  }, [expenses]);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Twoje wydatki w tym tygodniu</Text>
-      <Text style={styles.money}>{expenses.sum} zł</Text>
+      <Text style={styles.title}>Twoje wydatki w tym miesiącu</Text>
+      <Text style={styles.money}>{weekSum} zł</Text>
       <Button
         title="Dodaj nowy wydatek"
-        onPress={() => console.log('new expense')}
+        onPress={() => navigation.navigate('AddExpenseModal')}
       />
     </View>
   );
