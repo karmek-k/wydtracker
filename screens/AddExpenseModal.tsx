@@ -15,7 +15,9 @@ export default function AddExpenseModal({
 
   function handlePress() {
     const nameVal = name !== '' ? name : undefined;
-    const costVal = Number.parseFloat(cost.replace(/[^0-9.]/g, ''));
+    const costVal = Number.parseFloat(
+      cost.replace(',', '.').replace(/[^0-9.]/g, '')
+    );
 
     if (!costVal || costVal === 0) {
       return;
