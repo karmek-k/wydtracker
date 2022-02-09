@@ -15,9 +15,9 @@ const linking: LinkingOptions<RootStackParamList> = {
     screens: {
       Root: {
         screens: {
-          CurrentWeek: {
+          CurrentMonth: {
             screens: {
-              CurrentWeekScreen: 'currentWeek'
+              CurrentMonthScreen: 'currentWeek'
             }
           },
           History: {

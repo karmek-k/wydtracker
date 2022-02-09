@@ -12,12 +12,12 @@ import {
 } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { ColorSchemeName, Pressable } from 'react-native';
+import { ColorSchemeName } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import CurrentWeekScreen from '../screens/CurrentWeekScreen';
+import CurrentMonthScreen from '../screens/CurrentMonthScreen';
 import HistoryScreen from '../screens/HistoryScreen';
 import {
   RootStackParamList,
@@ -81,16 +81,16 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="CurrentWeek"
+      initialRouteName="CurrentMonth"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint
       }}
     >
       <BottomTab.Screen
-        name="CurrentWeek"
-        component={CurrentWeekScreen}
-        options={({ navigation }: RootTabScreenProps<'CurrentWeek'>) => ({
-          title: 'Bieżący tydzień',
+        name="CurrentMonth"
+        component={CurrentMonthScreen}
+        options={({ navigation }: RootTabScreenProps<'CurrentMonth'>) => ({
+          title: 'Bieżący miesiąc',
           tabBarIcon: ({ color }) => <TabBarIcon name="money" color={color} />
         })}
       />
